@@ -1,6 +1,7 @@
 package connection;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.net.URL;
 import java.io.InputStreamReader;
 
@@ -19,7 +20,7 @@ public class ConnectionTask {
         }
     }
 
-    public static String readUrl(String urlString) throws Exception {
+    public static String readUrl(String urlString) throws IOException {
         BufferedReader reader = null;
         try {
             URL url = new URL(urlString);

@@ -250,6 +250,44 @@ public class LeagueAPI {
 
             return getJsonFromUrl(url);
         }
+
+        public JSONObject getMasteries(Object... optionals) throws JSONException {
+            api_url = "/api/lol/static-data/" + region.toLowerCase() + "/v1.2/mastery?api_key=";
+            String locale = "en_US";
+            String version = "5.24.2";
+            String masteryListData = "all";
+
+            String url = "https://global.api.pvp.net" + api_url + api_key;
+            if (optionals.length > 3) {
+                throw new IllegalArgumentException("too many arguments");
+            } else {
+                if (optionals.length > 0) {
+
+                    if (!(optionals[0] instanceof String)) {
+                        throw new IllegalArgumentException("...");
+                    }
+                    locale = (String) optionals[0];
+                }
+                if (optionals.length > 1) {
+
+                    if (!(optionals[1] instanceof String)) {
+                        throw new IllegalArgumentException("...");
+                    }
+                    version = (String) optionals[1];
+                }
+                if (optionals.length > 2) {
+
+                    if (!(optionals[2] instanceof Boolean)) {
+                        throw new IllegalArgumentException("...");
+                    }
+                    masteryListData = (String) optionals[2];
+                }
+            }
+
+            url += "&locale=" + locale + "&version=" + version + "&masteryListData=" + masteryListData;
+
+            return getJsonFromUrl(url);
+        }
     }
 
 }
